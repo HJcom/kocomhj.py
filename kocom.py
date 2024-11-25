@@ -417,7 +417,7 @@ def mqtt_on_message(mqttc, obj, msg):
     # thermo set temp : kocom/room/thermo/3/set_temp/command
     elif 'thermo' in topic_d and 'set_temp' in topic_d:
         dev_id = device_h_dic['thermo']+'{0:02x}'.format(int(topic_d[3]))
-        settemp_hex = '{0:02x}'.format(int(float(command)))
+        settemp_hex = '{0:02x}'.format(int(round(float(command))))
 
         value = '1100' + settemp_hex + '0000000000'
         send_wait_response(dest=dev_id, value=value, log='thermo settemp')
